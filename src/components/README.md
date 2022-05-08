@@ -87,8 +87,6 @@
 />
 ```
 
-
-
 # Contact
 
 <img src="http://mdrs.yuanjin.tech/img/20201130165641.gif" alt="iShot2020-11-30下午04.55.47" style="zoom:40%;" />
@@ -148,3 +146,35 @@
 网站侧边栏
 
 宽度和高度撑满外层容器
+
+# Layout
+
+```vue
+<template>
+  <Layout>
+    <template #left>
+      <div>
+        左边栏区域，宽度适应内容，溢出隐藏
+      </div>
+    </template>
+    <div>
+        主区域，宽度占满剩余空间，溢出隐藏
+    </div>
+    <template #right>
+      <div>
+        右边栏区域，宽度适应内容，溢出隐藏
+      </div>
+    </template>
+  </Layout>
+</template>
+```
+
+<img src="http://mdrs.yuanjin.tech/img/20201202154014.png" alt="image-20201202154014492" style="zoom:40%;" />
+
+
+## 属性
+| 插槽名  | 含义       |
+| ------- | ---------- |
+| default | 中间主区域 |
+| left    | 左边栏     |
+| right   | 右边栏     |

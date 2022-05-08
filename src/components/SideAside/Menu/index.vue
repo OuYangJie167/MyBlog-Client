@@ -73,7 +73,6 @@ export default {
         &.select {
             background-color: darken(#fff, 50%);
         } 
-
         &.select:hover {
             color: inherit;
         }
