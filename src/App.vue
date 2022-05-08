@@ -1,12 +1,19 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+    <!-- <Avatar url="http://mdrs.yuanjin.tech/img/20201130153821.png" /> -->
+    <ImageLoad src="https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?fit=crop&crop=entropy&w=3456&h=2304"
+    placeholder="https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?w=100" :duration="5000"/>
   </div>
 </template>
+
+<script>
+  import ImageLoad from "@/components/ImageLoad/index.vue";
+  export default {
+    components: {
+      ImageLoad
+    }
+  }
+</script>
 
 <style lang="less">
 #app {
@@ -15,18 +22,10 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+  width: 600px;
+  height: 400px;
+  position: relative;
+  margin: 120px auto;
+  border: 1px solid;
 }
 </style>
