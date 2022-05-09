@@ -1,9 +1,15 @@
 <template>
     <div class="menu-container">
-        <a :href="item.link" v-for="item in menus" :key="item.link" :class="{select: isSelect(item)}">
+        <RouterLink 
+        :exact="item.exact" 
+        :to="{name: item.name}" 
+        v-for="item in menus" 
+        :key="item.link"
+        active-class="select"
+        exact-active-class="">
             <Icon :type="item.icon" />
             {{ item.title }}
-        </a>
+        </RouterLink>
     </div>
 </template>
 
@@ -17,45 +23,38 @@ export default {
         return {
             menus: [
                 {
-                    link: "/",
+                    name: "Home",
                     icon: "home",
-                    title: "首页"
+                    title: "首页",
+                    exact: true
                 },
                 {
-                    link: "/blog",
+                    name: "Blog",
                     icon: "blog",
                     title: "文章",
-                    startWith: true
+                    exact: false
                 },
                 {
-                    link: "/about",
+                    name: "About",
                     icon: "about",
-                    title: "关于我"
+                    title: "关于我",
+                    exact: true
                 },
                 {
-                    link: "/project",
+                    name: "Project",
                     icon: "code",
-                    title: "项目&效果"
+                    title: "项目&效果",   
+                    exact: true
                 },
                 {
-                    link: "/message",
+                    name: "Message",
                     icon: "chat",
-                    title: "留言板"
+                    title: "留言板",
+                    exact: true
                 }
             ]
         }           
     },
-    methods: {
-        isSelect(item) {
-            const link = item.link.toLowerCase();
-            const pathName = location.pathname.toLowerCase();
-            if(item.startWith) {
-                return pathName.startsWith(link);
-            } else {
-                return pathName === link;
-            }
-        }
-    }
 }
 </script>
 

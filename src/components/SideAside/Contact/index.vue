@@ -40,10 +40,16 @@
 </template>
 
 <script>
+import url from "@/assets/001.jpg";
 import Icon from "@/components/Icon/index.vue";
 export default {
     components: {
         Icon
+    },
+    data() {
+      return {
+        url
+      }
     }
 }
 </script>

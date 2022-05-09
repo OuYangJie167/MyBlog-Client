@@ -6,6 +6,9 @@
       <template #left>
          <SideAside />
       </template>
+      <template #default>
+        <RouterView />
+      </template>
     </Layout>
   </div>
 </template>
