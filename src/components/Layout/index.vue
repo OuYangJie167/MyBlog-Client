@@ -3,7 +3,7 @@
         <header class="right">
             <slot name="left"></slot>
         </header>
-        <main class="main">
+        <main class="main" id="main">
             <slot></slot>
         </main>
         <footer class="right">

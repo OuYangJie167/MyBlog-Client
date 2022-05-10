@@ -2,6 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import "./styles/global.less";
 import router from "@/router/index.js";
+import showMessage from "./utils/showMessage/index.js";
+Vue.prototype.$showMessage = showMessage;
 
 new Vue({
   router,
