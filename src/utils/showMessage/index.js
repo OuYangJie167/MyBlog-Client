@@ -9,8 +9,11 @@ import styles from "./message.module.less";
  * @param {HTMLElement} container 容器，信息会显示到该容器的正中；若不传，则显示到页面正中
  * @param {Number} duration 消息显示多久时间后消失
  */
-export default function(content, type, container, duration = 2000){
-
+export default function(options = {}){
+    const content = options.content || "";
+    const type = options.type || "info";
+    const container = options.cotnainer || document.body;
+    const duration = options.duration || 2000;
     const div = document.createElement("div");
 
     const IconDom = getComponentsRootDom(Icon, { type });
@@ -18,16 +21,12 @@ export default function(content, type, container, duration = 2000){
     div.innerHTML = `<span class=${styles.icon}>${IconDom.outerHTML}</span><div>${content}</div>`;
 
     div.className = `${styles.message} ${styles["message-" + type]}`;
-
-    if(!container) {
-        container = document.body;
-    } else {
-        if(getComputedStyle(container).position === "static") {
-            container.style.position = "relative";
-        }
+    
+    if(getComputedStyle(container).position === "static") {
+        container.style.position = "relative";
     }
-    container.appendChild(div);
 
+    container.appendChild(div);
 
     div.clientHeight;
     div.style.opacity = 1;
