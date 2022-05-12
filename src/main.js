@@ -11,7 +11,7 @@ Vue.prototype.$showMessage = showMessage;
 import "./api/banner.js";
 import "./Mock";
 
-import vLoading from "./directive/loading.js";
+import vLoading from "./directives/loading.js";
 Vue.directive("loading", vLoading);
 
 new Vue({
