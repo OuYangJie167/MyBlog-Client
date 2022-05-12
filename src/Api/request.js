@@ -11,7 +11,6 @@ ins.interceptors.response.use(function(resp){
         })
         return null;
     }
-    console.log(resp.data.data);
     return resp.data.data;
 })
 

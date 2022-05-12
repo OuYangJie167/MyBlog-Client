@@ -3,7 +3,7 @@
       <img :src="placeholder" v-if="!everyThingDom" class="placeholder" alt="">
       <img :src="src" @load="hangleLoad" alt="" :style="{
           opacity: originOpacity,
-          transition: `${duration}ms`
+          transition: `all ${duration}ms`
       }">
   </div>
 </template>
@@ -40,6 +40,7 @@ export default {
             this.originLoading = 1;
             setTimeout(()=> {
                 this.everyThingDom = true;
+                this.$emit("load");
             }, this.duration)
         }
     }
@@ -53,6 +54,7 @@ export default {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    background-color: #999;
     img {
         .self-fill();
         object-fit: cover;

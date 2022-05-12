@@ -8,7 +8,7 @@ import router from "@/router/index.js";
 import showMessage from "./utils/showMessage/index.js";
 Vue.prototype.$showMessage = showMessage;
 
-import "./Api/banner.js";
+import "./api/banner.js";
 import "./Mock";
 
 new Vue({
