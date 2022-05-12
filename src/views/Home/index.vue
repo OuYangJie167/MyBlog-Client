@@ -1,5 +1,5 @@
 <template>
-  <div class="home-container" ref="container" @wheel="handleWheel"> 
+  <div v-loading="isLoading" class="home-container" ref="container" @wheel="handleWheel"> 
       <ul class="carousel-container" :style="{
         marginTop
       }" @transitionend="transitionEnd">
@@ -35,6 +35,7 @@ export default {
     return {
       banners: [],
       index: 0,
+      isLoading: true,
       containerHeight: this.$refs.container,
       switching: false
     }
