@@ -14,6 +14,16 @@ import "./Mock";
 import vLoading from "./directives/loading.js";
 Vue.directive("loading", vLoading);
 
+import * as getBlog from "./api/blog.js";
+getBlog.postComment({
+    nickname: "昵称",
+    content: "评论内容，纯文本",
+    blogId: "123",
+  })
+  .then((r) => {
+    console.log(r);
+  });
+
 new Vue({
   router,
   render: h => h(App)

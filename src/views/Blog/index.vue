@@ -1,41 +1,25 @@
 <template>
-  <div class="blog-container">
-      文章
-      <RightList :list="list" @select="handleSelect" />
-  </div>
+  <Layout>
+    <BlogList />
+    <template #right>
+      <BlogCategory />
+    </template> 
+  </Layout>
 </template>
 
 <script>
-import RightList from "./components/RightList.vue";
+import Layout from "@/components/Layout/index.vue";
+import BlogList from "./components/BlogList.vue";
+import BlogCategory from "./components/BlogCategory.vue";
 export default {
   components: {
-    RightList
+    Layout,
+    BlogList,
+    BlogCategory,
   },
-  data() {
-    return {
-      list: [
-        {name: "1", isSelect: true},
-        {name: "2", isSelect: false},
-        {name: "3", isSelect: false, children:[
-          {name: "1", isSelect: false},
-          {name: "2", isSelect: false},
-          {name: "3", isSelect: false},
-          {name: "4", isSelect: false},
-          {name: "5", isSelect: false},
-        ]},
-        {name: "4", isSelect: false},
-        {name: "5", isSelect: false},
-      ]
-    }
-  },
-  methods: {
-    handleSelect(item) {
-      console.log(item);
-    }
-  }
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>
