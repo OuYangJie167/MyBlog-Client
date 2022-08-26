@@ -18,14 +18,12 @@
 
     <a
       @click="handleClick(current + 1)"
-      :class="{ disabled: current === pageNumber }"
-    >
+      :class="{ disabled: current === pageNumber }">
       &gt;&gt;
     </a>
     <a
       @click="handleClick(pageNumber)"
-      :class="{ disabled: current === pageNumber }"
-    >
+      :class="{ disabled: current === pageNumber }">
       &gt;&gt;|
     </a>
   </div>

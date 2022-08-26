@@ -1,7 +1,10 @@
 <template>
     <ul class="right-list-container">
         <li v-for="(item, i) in list" :key="i">
-            <span @click="handleClick(item)" :class="{select: item.isSelect}">{{item.name}}</span>
+            <h3 @click="handleClick(item)" :class="{select: item.isSelect}">
+                {{ item.name }} 
+                <span class="subtitle">{{ item.articleCount }}</span>
+            </h3>
             <RightList :list="item.children" @select="handleClick" />
         </li>
     </ul>
@@ -38,6 +41,12 @@ export default {
             color: @warn;
         }
     }
-} 
 
+    .subtitle {
+        font-size: 1rem;
+        font-weight: lighter;
+
+        margin-left: 10px;
+    }
+} 
 </style>

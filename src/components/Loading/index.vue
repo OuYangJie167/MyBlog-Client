@@ -15,7 +15,6 @@ export default {
 
 <style scoped lang="less">
 @import "~@/styles/mixin.less";
-@import "~@/styles/var.less";
 .loading-container {
     .self-center();
 }

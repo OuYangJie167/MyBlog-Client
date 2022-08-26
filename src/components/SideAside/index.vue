@@ -1,8 +1,15 @@
 <template>
     <div class="side-aside-container">
-        <Avatar url="http://mdrs.yuanjin.tech/img/20201130153821.png" />
+        <template v-if="data">
+            <Avatar :url="data.avatar" :size="125" />
+            <h1 class="title">{{data.siteTitle}}</h1>
+        </template>
+       
         <Menu />
-        <Contact />
+        <Contact v-if="data"/>
+        <p v-if="data" class="footer">
+            {{data.icp}}
+        </p>
     </div>
 </template>
 
@@ -10,12 +17,14 @@
 import Menu from "./Menu/index.vue";
 import Contact from "./Contact/index.vue";
 import Avatar from "@/components/Avatar/index.vue";
+import { mapState } from "vuex";
 export default {
     components: {
         Menu,
         Contact,
         Avatar
-    }
+    },
+    computed: mapState("setting", ["data"])
 }
 </script>
 
@@ -24,6 +33,13 @@ export default {
 .side-aside-container { 
     width: 300px;
     height: 100%;
-    background-color: @dark;    
+    text-align: center;
+    background-color: @dark;
+    .title {
+        color: #fff;
+    } 
+    .footer {
+        color: @lightWords;
+    }   
 }
 </style>

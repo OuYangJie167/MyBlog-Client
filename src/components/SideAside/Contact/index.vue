@@ -1,37 +1,37 @@
 <template>
   <ul class="contact-container">
     <li>
-      <a href="https://github.com/" target="_blank">
+      <a :href="data.github" target="_blank">
         <Icon type="github" />
-        <span>GitHub</span>
+        <span>{{data.githubName}}</span>
       </a>
     </li>
     <li>
-      <a href="https://mail.qq.com/cgi-bin/frame_html?sid=1optMjpJ7L7KEHkb&r=131755f805491291c12907ea75864273" target="_blank">
+      <a :href="`mailto:${data.mail}`" target="_blank">
         <Icon type="mail" />
-        <span>邮箱地址</span>
+        <span>{{data.mail}}</span>
       </a>
     </li>
     <li>
-      <a href="tencent://message/?Menu=yes&uin=738657347&Service=300&sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45" target="_blank">
+      <a :href="`tencent://message/?Menu=yes&uin=${data.qq}&Service=300&sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45`" target="_blank">
         <Icon type="qq" />
-        <span>QQ账号</span>
+        <span>{{data.qq}}</span>
       </a>
       <div class="pop">
         <img
-            :src="url"
+            :src="data.qqQrCode"
             alt=""
         />
       </div>
     </li>
     <li>
-      <a href="" target="_blank">
+      <a>
         <Icon type="weixin" />
-        <span>微信账号</span>
+        <span>{{data.weixin}}</span>
       </a>
       <div class="pop">
         <img
-            :src="url"
+            :src="data.weixinQrCode"
             alt=""
         />
       </div>
@@ -42,6 +42,7 @@
 <script>
 import url from "@/assets/001.jpg";
 import Icon from "@/components/Icon/index.vue";
+import { mapState } from "vuex";
 export default {
     components: {
         Icon
@@ -50,7 +51,8 @@ export default {
       return {
         url
       }
-    }
+    },
+    computed: mapState("setting", ["data"])
 }
 </script>
 

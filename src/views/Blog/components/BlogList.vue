@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-list-container" ref="container" v-loading="isLoading">
+  <div class="blog-list-container" ref="mainContainer" v-loading="isLoading">
     <ul>
       <li v-for="item in data.rows" :key="item.id">
         <div class="thumb" v-if="item.thumb">
@@ -9,7 +9,7 @@
               id: item.id
             }
           }">
-            <img :src="item.thumb" :alt="item.title" :title="item.title" />
+            <img v-lazy="item.thumb" :alt="item.title" :title="item.title" />
           </RouterLink>
         </div>
         <div class="main">
@@ -38,6 +38,7 @@
         </div>
       </li>
     </ul>
+    <Empty v-if="data.rows.length === 0 && !isLoading" />
     <!-- 分页放到这里 -->
     <Pager
       v-if="data.total"
@@ -53,12 +54,15 @@
 <script>
 import Pager from "@/components/Pager";
 import fetchData from "@/mixins/fetchData.js";
+import mainScroll from "@/mixins/mainScroll.js";
 import { getBlogs } from "@/api/blog.js";
 import formatDate from "@/utils/formatDate.js";
+import Empty from "@/components/Empty/index.vue";
 export default {
-  mixins: [fetchData({})],
+  mixins: [fetchData({total: 0, rows: []}), mainScroll("mainContainer")],
   components: {
     Pager,
+    Empty,
   },
   computed: {
     // 获取路由信息
@@ -72,7 +76,7 @@ export default {
         limit,
       };
     },
-  },
+  }, 
   methods: {
     formatDate,
     async fetchData() {
@@ -90,13 +94,11 @@ export default {
       // 跳转到 当前的分类id  当前的页容量  newPage的页码
       if (this.routeInfo.categoryId === -1) {
         // 当前没有分类
-        // /article?page=${newPage}&limit=${this.routeInfo.limit}
         this.$router.push({
           name: "Blog",
           query,
         });
       } else {
-        // /article/cate/${this.routeInfo.categoryId}?page=${newPage}&limit=${this.routeInfo.limit}
         this.$router.push({
           name: "CategoryBlog",
           query,
@@ -106,12 +108,13 @@ export default {
         });
       }
     },
+  
   },
   watch: {
     async $route() {
       this.isLoading = true;
       // 滚动高度为0
-      this.$refs.container.scrollTop = 0;
+      this.$refs.mainContainer.scrollTop = 0;
       this.data = await this.fetchData();
       this.isLoading = false;
     },

@@ -7,24 +7,20 @@ import router from "@/router/index.js";
 // 弹出信息
 import showMessage from "./utils/showMessage/index.js";
 Vue.prototype.$showMessage = showMessage;
-
+// 导入事件总线
+import"./eventBus.js";
 import "./api/banner.js";
 import "./Mock";
 
+import store from "./store";
+store.dispatch("setting/fetchSetting");
+
 import vLoading from "./directives/loading.js";
+import vLazy from "./directives/lazy.js";
 Vue.directive("loading", vLoading);
-
-import * as getBlog from "./api/blog.js";
-getBlog.postComment({
-    nickname: "昵称",
-    content: "评论内容，纯文本",
-    blogId: "123",
-  })
-  .then((r) => {
-    console.log(r);
-  });
-
+Vue.directive("lazy", vLazy);
 new Vue({
+  store,
   router,
   render: h => h(App)
 }).$mount('#app')

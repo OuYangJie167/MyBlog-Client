@@ -12,10 +12,9 @@ import styles from "./message.module.less";
 export default function(options = {}){
     const content = options.content || "";
     const type = options.type || "info";
-    const container = options.cotnainer || document.body;
+    const container = options.container || document.body;
     const duration = options.duration || 2000;
     const div = document.createElement("div");
-
     const IconDom = getComponentsRootDom(Icon, { type });
 
     div.innerHTML = `<span class=${styles.icon}>${IconDom.outerHTML}</span><div>${content}</div>`;
@@ -38,6 +37,7 @@ export default function(options = {}){
 
         div.addEventListener("transitionend",()=>{
             div.remove();
+            options.callback && options.callback();
         }, {once: true})
     }, duration)
 
