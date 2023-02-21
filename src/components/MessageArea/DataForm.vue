@@ -65,7 +65,6 @@ export default {
       this.isSubmiting = true;
 
       this.$emit("submit", this.formData, (successMsg)=> {
-        console.log(successMsg);
         this.$showMessage({
           content: successMsg,
           type: "success",
